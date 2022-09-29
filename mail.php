@@ -5,11 +5,15 @@ $email = $_POST['email'];
 $subject = $_POST['subject'];
 $message = $_POST['message'];
 
-$mailheader = "From:".$name."<".$email.">\r\n";
+$mailheader = array(
+            'From' => "From:".$name."<".$email.">\r\n",
+            'Reply-To' => "From:".$name."<".$email.">\r\n",
+            'X-Mailer' => 'PHP/' . phpversion()
+);
 
 $recipient = "einsteingideon@gmail.com";
 
-$mail($recipient, $subject, $message, $mailheader) or die("Error!");
+mail($recipient, $subject, $message, $mailheader) or die("Error!");
 
 echo'
 
